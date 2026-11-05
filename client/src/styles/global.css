@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+/* =====================================================================
+   PLAYVERSE design tokens
+   Palette is the design authority — change values here, nowhere else.
+   ===================================================================== */
+@theme {
+  /* Sky & water */
+  --color-play-sky: #52b8ff;
+  --color-play-sky-deep: #2e8fe8;
+
+  /* Night / panels */
+  --color-play-ocean: #102a56;
+  --color-play-cosmic: #101c3b;
+
+  /* Accents */
+  --color-play-portal: #7658f5;
+  --color-play-portal-deep: #4b32c4;
+  --color-play-energy: #ffd447;
+  --color-play-energy-deep: #c99a1b;
+  --color-play-forest: #39c985;
+  --color-play-forest-deep: #2aa76c;
+  --color-play-coral: #ff6b68;
+  --color-play-coral-deep: #d9524f;
+  --color-play-soft: #f7faff;
+  --color-play-azure: #2f7bf6;
+  --color-play-azure-deep: #1f5fd1;
+
+  /* Typography */
+  --font-display: "Fredoka", "Trebuchet MS", ui-rounded, system-ui, sans-serif;
+  --font-body: "Nunito", "Segoe UI", system-ui, sans-serif;
+
+  /* Radii & elevation */
+  --radius-panel: 1.5rem;
+  --shadow-panel: 0 24px 60px rgba(4, 10, 28, 0.45);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-play-cosmic);
+    color: var(--color-play-soft);
+    font-family: var(--font-body);
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-play-energy);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+}
+
+@layer components {
+  /* ---------- Dark translucent game panel ---------- */
+  .pv-panel {
+    position: relative;
+    border-radius: var(--radius-panel);
+    background:
+      linear-gradient(180deg, rgba(23, 54, 108, 0.8) 0%, rgba(10, 23, 51, 0.88) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -28px 52px rgba(4, 10, 28, 0.35),
+      var(--shadow-panel);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+  }
+
+  /* ---------- Light content card (guide / intro / settings) ---------- */
+  .pv-panel--light {
+    background: linear-gradient(180deg, rgba(247, 250, 255, 0.97) 0%, rgba(230, 240, 252, 0.95) 100%);
+    border-color: rgba(16, 42, 86, 0.12);
+    color: var(--color-play-cosmic);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 24px 60px rgba(4, 10, 28, 0.35);
+  }
+
+  /* ---------- Dimensional PLAYVERSE wordmark ---------- */
+  .pv-logo {
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.015em;
+    font-size: clamp(2.75rem, 9vw, 6.25rem);
+    transform: perspective(900px) rotateX(8deg);
+    filter: drop-shadow(0 14px 22px rgba(4, 12, 34, 0.5));
+    user-select: none;
+  }
+
+  .pv-logo__text {
+    position: relative;
+    display: block;
+  }
+
+  .pv-logo__layer {
+    display: block;
+  }
+
+  .pv-logo__layer--extrude {
+    color: #a85b14;
+    transform: translate(0.02em, 0.055em);
+    -webkit-text-stroke: 0.11em #123a8c;
+    text-shadow: 0 0.05em 0 #7c3f0c;
+  }
+
+  .pv-logo__layer--stroke {
+    position: absolute;
+    inset: 0;
+    color: #123a8c;
+    -webkit-text-stroke: 0.13em #123a8c;
+  }
+
+  .pv-logo__layer--fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #fff6c9 0%, #ffd447 46%, #f5a623 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .pv-logo__layer--gloss {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.45) 26%,
+      rgba(255, 255, 255, 0) 27%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .pv-logo__ribbon {
+    display: inline-block;
+    margin-top: 0.5em;
+    padding: 0.34em 1em 0.3em;
+    border-radius: 0.55em;
+    background: linear-gradient(180deg, #1e4fbf 0%, #123a8c 100%);
+    color: var(--color-play-soft);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(0.72rem, 1.5vw, 1.05rem);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    box-shadow:
+      0 5px 0 rgba(9, 24, 66, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transform: rotate(-1.2deg);
+  }
+
+  /* ---------- CSS cube avatar (matches the 3D characters) ---------- */
+  .pv-avatar {
+    --avatar-size: 56px;
+    position: relative;
+    display: inline-block;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 30%;
+    background: linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--avatar-body) 88%, white) 0%,
+      var(--avatar-body) 45%,
+      var(--avatar-accent) 100%
+    );
+    box-shadow:
+      inset 0 3px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -7px 0 rgba(6, 16, 40, 0.22),
+      0 7px 16px rgba(4, 12, 34, 0.35);
+    flex: none;
+  }
+
+  .pv-avatar--sm {
+    --avatar-size: 40px;
+  }
+  .pv-avatar--md {
+    --avatar-size: 56px;
+  }
+  .pv-avatar--lg {
+    --avatar-size: 96px;
+  }
+
+  .pv-avatar__eye {
+    position: absolute;
+    top: 34%;
+    width: 15%;
+    height: 20%;
+    border-radius: 50%;
+    background: #16233f;
+  }
+
+  .pv-avatar__eye--left {
+    left: 23%;
+  }
+  .pv-avatar__eye--right {
+    right: 23%;
+  }
+
+  .pv-avatar__mouth {
+    position: absolute;
+    left: 50%;
+    top: 64%;
+    width: 26%;
+    height: 9%;
+    border-radius: 999px;
+    background: #16233f;
+    transform: translateX(-50%);
+  }
+
+  /* ---------- Six-character room code boxes ---------- */
+  .pv-code-input {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(10, 23, 51, 0.6);
+    text-align: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    text-transform: uppercase;
+    color: var(--color-play-soft);
+    caret-color: var(--color-play-energy);
+    backdrop-filter: blur(10px);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .pv-code-input:focus {
+    outline: none;
+    border-color: var(--color-play-energy);
+    box-shadow: 0 0 0 4px rgba(255, 212, 71, 0.25);
+  }
+
+  .pv-code-input:not(:placeholder-shown) {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  /* ---------- WebGL-free fallback sky ---------- */
+  .pv-fallback-sky {
+    background:
+      radial-gradient(60% 45% at 78% 16%, rgba(255, 246, 216, 0.9) 0%, rgba(255, 246, 216, 0) 60%),
+      linear-gradient(180deg, #2e8fe8 0%, #7fc9ff 46%, #e6f6ff 100%);
+  }
+
+  .pv-fallback-island {
+    position: absolute;
+    left: var(--island-x);
+    top: var(--island-y);
+    width: var(--island-w);
+    filter: drop-shadow(0 22px 26px rgba(8, 22, 48, 0.35));
+  }
+
+  .pv-fallback-island__grass {
+    height: calc(var(--island-w) * 0.15);
+    border-radius: 50% 50% 42% 42% / 72% 72% 28% 28%;
+    background: linear-gradient(180deg, #79e79a 0%, #45b56a 100%);
+    box-shadow: inset 0 -4px 8px rgba(12, 60, 30, 0.35);
+  }
+
+  .pv-fallback-island__rock {
+    height: calc(var(--island-w) * 0.52);
+    margin-top: -3px;
+    background: linear-gradient(180deg, #8b6647 0%, #46301f 100%);
+    clip-path: polygon(0 0, 100% 0, 74% 62%, 58% 92%, 50% 100%, 43% 88%, 26% 60%);
+  }
+}
+
+/* Respect the OS reduced-motion preference for CSS-driven animation. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* In-app accessibility preferences (Settings screen). */
+html[data-reduce-motion='true'] *,
+html[data-reduce-motion='true'] *::before,
+html[data-reduce-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-high-contrast='true'] .pv-panel {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: linear-gradient(180deg, rgba(14, 36, 74, 0.97) 0%, rgba(6, 16, 38, 0.98) 100%);
+}
+
+html[data-high-contrast='true'] .pv-panel--light {
+  border-color: rgba(4, 16, 40, 0.55);
+}

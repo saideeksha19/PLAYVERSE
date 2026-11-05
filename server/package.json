@@ -1,0 +1,27 @@
+{
+  "name": "@playverse/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "PLAYVERSE authoritative game server (Express + Socket.IO).",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node20 --sourcemap --external:express --external:socket.io --outfile=dist/server.js",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@playverse/shared": "*",
+    "express": "^5.3.0",
+    "socket.io": "^4.8.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.28.2",
+    "socket.io-client": "^4.8.4",
+    "tsx": "^4.23.15",
+    "vitest": "^5.0.5"
+  }
+}
